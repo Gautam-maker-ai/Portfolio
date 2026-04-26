@@ -4,8 +4,8 @@ import { createClient } from '@supabase/supabase-js';
 import emailjs from '@emailjs/browser';
 
 const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_ANON_KEY
+  import.meta.env.VITE_SUPABASE_URL!,
+  import.meta.env.VITE_SUPABASE_ANON_KEY!
 );
 
 interface FormData {
