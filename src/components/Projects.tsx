@@ -18,7 +18,7 @@ const items: Item[] = [
     title: 'Waste Management System',
     description: 'Real-time AI analytics dashboard with live visualization.',
     tags: ['React', 'Node.js','Tailwind CSS'],
-    image: 'src/assets/Management.png',
+    image: 'src/assets/Management-Waste.jpg',
     url: 'https://management-waste.vercel.app/',
     type: 'Project',
     category: 'Web App',
