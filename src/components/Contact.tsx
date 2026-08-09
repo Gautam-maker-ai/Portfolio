@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import { createClient } from '@supabase/supabase-js';
+// import { createClient } from '@supabase/supabase-js';
 import emailjs from '@emailjs/browser';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL!,
-  import.meta.env.VITE_SUPABASE_ANON_KEY!
-);
+// const supabase = createClient(
+//   import.meta.env.VITE_SUPABASE_URL!,
+//   import.meta.env.VITE_SUPABASE_ANON_KEY!
+// );
 
 interface FormData {
   name: string;
@@ -85,32 +85,45 @@ export default function Contact() {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    setStatus('loading');
-    try {
-      await emailjs.sendForm(
-        'service_whliavc',
-        'template_n5ycca9',
-        formRef.current!,
-        'WOa2XEnT5lips_71-'
-      );
+  if (!validate()) return;
 
-      const { error } = await supabase.from('contact_messages').insert([form]);
-      if (error) throw error;
+  setStatus('loading');
 
-      setStatus('success');
-      setForm({ name: '', email: '', subject: '', message: '' });
-      setErrors({});
-      setTimeout(() => setStatus('idle'), 5000);
+  try {
+    await emailjs.sendForm(
+      'service_whliavc',
+      'template_n5ycca9',
+      formRef.current!,
+      'WOa2XEnT5lips_71-'
+    );
 
-    } catch {
-      setStatus('error');
-      setTimeout(() => setStatus('idle'), 4000);
-    }
-  };
+    setStatus('success');
+
+    setForm({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
+
+    setErrors({});
+
+    setTimeout(() => {
+      setStatus('idle');
+    }, 5000);
+
+  } catch (error) {
+    console.error('EmailJS Error:', error);
+    setStatus('error');
+
+    setTimeout(() => {
+      setStatus('idle');
+    }, 4000);
+  }
+};
 
   const onChange = (field: keyof FormData) => (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

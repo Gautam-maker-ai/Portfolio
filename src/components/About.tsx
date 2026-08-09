@@ -85,7 +85,7 @@ export default function About() {
                 <span className="gradient-text">Passion & Precision</span>
               </h3>
               <p className="text-slate-400 leading-relaxed mb-4">
-                I am a passionate second-year Computer Science Engineering (Data Science)
+                I am a passionate Third-year Computer Science Engineering (Data Science)
                 student at Chandigarh Engineering College, CGC Landran. 
                 I have strong technical skills in frontend development, along with a solid foundation in backend development,
                 and strong knowledge of C++ and C programming languages.
@@ -101,7 +101,7 @@ export default function About() {
             <div className="section-animate grid grid-cols-2 gap-4 mb-8">
               {[
                 { label: 'Name', value: 'Gautam Dhiman' },
-                { label: 'Role', value: 'Full Stack Dev' },
+                { label: 'Role', value: 'Aspiring Developer' },
                 { label: 'Location', value: 'Ambala Cantt' },
                 { label: 'Status', value: 'Open to Work' },
               ].map(({ label, value }) => (
